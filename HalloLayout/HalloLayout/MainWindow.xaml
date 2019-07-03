@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HalloLayout"
         mc:Ignorable="d"
-        Title="Hallo Layout" Height="450" Width="800">
+        Title="Hallo Layout" Height="450" Width="800" ResizeMode="CanResizeWithGrip">
     <UniformGrid Margin="0,0,-0.4,0" >
         <Canvas>
             <Ellipse Width="80" Height="60" Fill="Red" Canvas.Top="50" 

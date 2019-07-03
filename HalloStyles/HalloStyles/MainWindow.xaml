@@ -1,0 +1,106 @@
+﻿<Window x:Name="window" x:Class="HalloStyles.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HalloStyles"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="300">
+    <Window.Resources>
+        <Style x:Key="myStyle" TargetType="Control">
+            <Setter Property="Background" Value="Yellow"/>
+            <Setter Property="Margin" Value="4"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource myStyle}">
+            <Setter Property="FontFamily" Value="Bradley Hand ITC,Informal Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+
+        <Style x:Key="myTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource myStyle}" >
+            <Setter Property="FontSize" Value="18"/>
+            <Style.Triggers>
+                <Trigger Property="Text" Value="">
+                    <Setter Property="Background" Value="red"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="DodgerBlue"/>
+                </Trigger>
+                <EventTrigger RoutedEvent="MouseEnter" >
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                                             To="34" AutoReverse="True" Duration="0:0:1"/>
+                        </Storyboard>
+
+                    </BeginStoryboard>
+                </EventTrigger>
+
+            </Style.Triggers>
+        </Style>
+        <Storyboard x:Key="OnMouseEnter1" AutoReverse="True">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="button">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-14.416">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BounceEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="13.649">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuinticEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="window">
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF22C559"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#FFA9E7BD"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Style x:Key="myCustomStyle" TargetType="Button" BasedOn="{StaticResource myStyle}">
+
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse Stroke="Black" StrokeThickness="4"  Fill="BlueViolet"/>
+                            <ContentPresenter Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="button">
+            <BeginStoryboard Storyboard="{StaticResource OnMouseEnter1}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <StackPanel >
+        <Button Style="{StaticResource  myStyle}">Button</Button>
+        <Button Style="{StaticResource  myStyle}">Button</Button>
+        <Button Style="{StaticResource  myStyle}">Button</Button>
+        <Button x:Name="button" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform> Button
+        </Button>
+        <Button>Button</Button>
+        <Button>Button</Button>
+        <Button Style="{StaticResource myCustomStyle}">Buttoeelkmflwken</Button>
+        <Button Style="{StaticResource myCustomStyle}" >
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Assets/teddy_bear.png" Stretch="None"/>
+                <TextBlock VerticalAlignment="Center">Hallo</TextBlock>
+            </StackPanel>
+        </Button>
+        <TextBox Style="{StaticResource myTextBoxStyle}"/>
+    </StackPanel>
+</Window>
