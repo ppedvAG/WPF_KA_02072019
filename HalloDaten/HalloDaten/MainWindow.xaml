@@ -9,7 +9,7 @@
     <DockPanel>
         <DockPanel Margin="8" DockPanel.Dock="Top">
             <Button Click="Suche" Padding="18,0" DockPanel.Dock="Right">Suche</Button>
-            <TextBox Margin="0,0,4,0"/>
+            <TextBox Text="thriller" Name="suchTb" Margin="0,0,4,0"/>
         </DockPanel>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -17,19 +17,19 @@
                 <ColumnDefinition Width="2"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <ListBox />
+            <ListBox Name="lb" DisplayMemberPath="volumeInfo.title" />
             <GridSplitter Background="Green" Grid.Column="1" HorizontalAlignment="Stretch"/>
             <DockPanel Margin="8" Grid.Column="2">
                 <Label DockPanel.Dock="Top">Title</Label>
-                <TextBox DockPanel.Dock="Top"/>
+                <TextBox DockPanel.Dock="Top" Text="{Binding ElementName=lb,Path=SelectedItem.volumeInfo.title}"/>
                 <Label DockPanel.Dock="Top">Subtitle</Label>
-                <TextBox DockPanel.Dock="Top"/>
+                <TextBox DockPanel.Dock="Top" Text="{Binding ElementName=lb,Path=SelectedItem.volumeInfo.subtitle}"/>
                 <Label DockPanel.Dock="Top">Published</Label>
-                <DatePicker DockPanel.Dock="Top"/>
+                <DatePicker DockPanel.Dock="Top" SelectedDate="{Binding ElementName=lb,Path=SelectedItem.volumeInfo.publishedDate}"/>
                 <Label DockPanel.Dock="Top">Description</Label>
-                <TextBox DockPanel.Dock="Top" MinLines="3" VerticalScrollBarVisibility="Auto"/>
+                <TextBox DockPanel.Dock="Top" MinLines="3" VerticalScrollBarVisibility="Auto" Text="{Binding ElementName=lb,Path=SelectedItem.volumeInfo.description}"/>
                 <Label DockPanel.Dock="Top">Authors</Label>
-                <ListBox/>
+                <ListBox ItemsSource="{Binding ElementName=lb,Path=SelectedItem.volumeInfo.authors}"/>
             </DockPanel>
         </Grid>
     </DockPanel>

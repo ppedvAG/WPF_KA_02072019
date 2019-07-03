@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using System.Net.Http;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HalloDaten
 {
@@ -25,10 +14,18 @@ namespace HalloDaten
             InitializeComponent();
         }
 
-        private void Suche(object sender, RoutedEventArgs e)
+        private async void Suche(object sender, RoutedEventArgs e)
         {
-            string url = "https://www.googleapis.com/books/v1/volumes?q=thriller";
+            string url = $"https://www.googleapis.com/books/v1/volumes?q={suchTb.Text}";
 
+            using (var client = new HttpClient())
+            {
+                var json = await client.GetStringAsync(url);
+
+                var result = JsonConvert.DeserializeObject<BooksResult>(json);
+
+                lb.ItemsSource = result.items;
+            }
         }
     }
 }
