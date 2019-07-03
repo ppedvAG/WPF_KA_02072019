@@ -1,0 +1,22 @@
+﻿<Application x:Class="HalloRessourcen.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:HalloRessourcen"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                
+                <ResourceDictionary>
+                    <SolidColorBrush x:Key="textfarbe" Color="HotPink"/>
+                    <FontWeight x:Key="schriftartengewicht">Normal</FontWeight>
+                </ResourceDictionary>
+
+                <ResourceDictionary Source="/MeineRessourcen;component/Dictionary1.xaml"/>
+                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Application.Resources>
+</Application>

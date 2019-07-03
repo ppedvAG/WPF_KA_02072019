@@ -11,7 +11,7 @@
             <Grid Margin="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
+                    <ColumnDefinition  Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -24,7 +24,14 @@
 
                 <Label Grid.Column="0" Grid.Row="0">Home:</Label>
                 <TextBox Margin="4" Text="c:\" Grid.Column="1" Grid.Row="0" />
-                <Button Margin="4" Grid.Column="2" Grid.Row="0">Browse</Button>
+                <!--<Button Margin="4" Grid.Column="2" Grid.Row="0">Browse</Button>-->
+                <ComboBox Grid.Column="2">
+                    <ComboBox.Items>
+                        <ComboBoxItem>Wurst</ComboBoxItem>
+                        <ComboBoxItem>Käse</ComboBoxItem>
+
+                    </ComboBox.Items>
+                </ComboBox>
 
                 <Label Grid.Column="0" Grid.Row="1">Network:</Label>
                 <TextBox Margin="4" Text="e:\shared" Grid.Column="1" Grid.Row="1" />
@@ -43,7 +50,7 @@
                     <Button Margin="4" Padding="4,2" Content="OK">
                         <Button.Background>
                             <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                <GradientStop Color="#FFAFFF39" Offset="0"/>
+                                <GradientStop Color="Red" Offset="0"/>
                                 <GradientStop Color="#FF47A309" Offset="1"/>
                             </LinearGradientBrush>
                         </Button.Background>
