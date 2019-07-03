@@ -1,0 +1,51 @@
+﻿<Window x:Class="HalloBinding.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HalloBinding"
+        mc:Ignorable="d" FontSize="16"
+        Title="MainWindow" Height="450" Width="300">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVis"/>
+        <local:BooleanToBlueYellowConverter x:Key="boolToColor"/>
+        <local:SlidersToColorConverter x:Key="slideToColor"/>
+    </Window.Resources>
+    <Window.Background>
+        <MultiBinding Converter="{StaticResource slideToColor}">
+            <Binding ElementName="r" Path="Value"/>
+            <Binding ElementName="g" Path="Value"/>
+            <Binding ElementName="b" Path="Value"/>
+        </MultiBinding>
+    </Window.Background>
+    <StackPanel Margin="8">
+
+        <TextBox Name="tb1"/>
+        <TextBox Text="{Binding ElementName=tb1,Path=Text,UpdateSourceTrigger=PropertyChanged}"
+                 Background="{Binding ElementName=tb1,Path=Text}"/>
+
+        <Slider Name="sl1" Maximum="100" />
+        <TextBlock Text="{Binding ElementName=sl1,Path=Value,StringFormat=00.00}"
+                   FontSize="{Binding ElementName=sl1,Path=Value}"/>
+
+        <Image Source="teapot.png" Stretch="None"
+               HorizontalAlignment="Left"
+               Visibility="{Binding ElementName=cb1,Path=IsChecked,Converter={StaticResource boolToVis}}"/>
+        <CheckBox Name="cb1">Teepot anzeigen</CheckBox>
+
+        <Rectangle x:Name="rect" Stroke="Black" StrokeThickness="2" Width="50" Height="50"
+                   HorizontalAlignment="Left" 
+                   Fill="{Binding ElementName=cb2,Path=IsChecked,Converter={StaticResource boolToColor}}"/>
+        <CheckBox Name="cb2" VerticalContentAlignment="Center">Gelb/Blau</CheckBox>
+
+
+        <GroupBox Header="RGB">
+            <StackPanel>
+                <Slider Name="r" Maximum="255" IsSnapToTickEnabled="True"/>
+                <Slider Name="g" Maximum="255" IsSnapToTickEnabled="True"/>
+                <Slider Name="b" Maximum="255" IsSnapToTickEnabled="True"/>
+            </StackPanel>
+        </GroupBox>
+
+    </StackPanel>
+</Window>

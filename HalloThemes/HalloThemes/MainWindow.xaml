@@ -1,12 +1,16 @@
-﻿<Window x:Class="HalloThemes.MainWindow"
+﻿<!--<mah:MetroWindow x:Class="HalloThemes.MainWindow"-->
+<Window x:Class="HalloThemes.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HalloThemes"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="600">
-
+    <Window.Style>
+        <Style TargetType="Window" BasedOn="{StaticResource {x:Type Window}}"/>
+    </Window.Style>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Datei">
@@ -24,19 +28,20 @@
                 <MenuItem Header="Ende"/>
             </MenuItem>
         </Menu>
-        
-        <ToolBar  DockPanel.Dock="Top">
-            <Button>Open...</Button>
-            <Button>Edit</Button>
-            <Button>Delete</Button>
-            <Separator/>
-        </ToolBar>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar  >
+                <Button>Open...</Button>
+                <Button>Edit</Button>
+                <Button>Delete</Button>
+                <Separator/>
+            </ToolBar>
+        </ToolBarTray>
         <StatusBar DockPanel.Dock="Bottom">
-            <StatusBarItem>
-                <TextBlock>Status</TextBlock>
-            </StatusBarItem>
             <StatusBarItem  >
                 <ProgressBar Height="22" Width="60" Value="55" IsIndeterminate="True"/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock>Status🚝🚲🚲🛹🛹🎨🎃🎃🎃</TextBlock>
             </StatusBarItem>
         </StatusBar>
         <UniformGrid Rows="1">
@@ -58,6 +63,9 @@
                 <ProgressBar Value="77" Height="22"/>
                 <Separator/>
                 <ProgressBar  IsIndeterminate="True" Height="22"/>
+                <Button>Button</Button>
+                <Button>Button</Button>
+                <Button>Button</Button>
             </StackPanel>
             <StackPanel>
                 <DatePicker/>
