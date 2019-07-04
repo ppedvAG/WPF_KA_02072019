@@ -11,15 +11,19 @@
             <Button Click="Suche" Padding="18,0" DockPanel.Dock="Right">Suche</Button>
             <TextBox Text="thriller" Name="suchTb" Margin="0,0,4,0"/>
         </DockPanel>
-        <Grid>
+        <Grid >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="4"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <ListBox Name="lb" DisplayMemberPath="volumeInfo.title" />
+            <!--<ListBox Name="lb" DisplayMemberPath="volumeInfo.title" />-->
+            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="lb" HorizontalContentAlignment="Stretch"  ItemTemplate="{StaticResource BookTemplate}"/>
             <GridSplitter Background="Green" Grid.Column="1" HorizontalAlignment="Stretch"/>
             <DockPanel Margin="8" Grid.Column="2">
+                <DockPanel DockPanel.Dock="Top" Width="300">
+                    <CheckBox Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorLevel=3,AncestorType=DockPanel},Path=ActualWidth}"/>
+                </DockPanel>
                 <Label DockPanel.Dock="Top">Title</Label>
                 <TextBox DockPanel.Dock="Top" Text="{Binding ElementName=lb,Path=SelectedItem.volumeInfo.title}"/>
                 <Label DockPanel.Dock="Top">Subtitle</Label>
@@ -29,6 +33,7 @@
                 <Label DockPanel.Dock="Top">Description</Label>
                 <TextBox DockPanel.Dock="Top" MinLines="3" VerticalScrollBarVisibility="Auto" Text="{Binding ElementName=lb,Path=SelectedItem.volumeInfo.description}"/>
                 <Label DockPanel.Dock="Top">Authors</Label>
+                <ContentControl DockPanel.Dock="Top" ContentTemplate="{StaticResource BookTemplate}" Content="{Binding ElementName=lb,Path=SelectedItem}"/>
                 <ListBox ItemsSource="{Binding ElementName=lb,Path=SelectedItem.volumeInfo.authors}"/>
             </DockPanel>
         </Grid>
