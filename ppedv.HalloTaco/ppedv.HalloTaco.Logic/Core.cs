@@ -1,4 +1,6 @@
-﻿using ppedv.HalloTaco.Model.Contracts;
+﻿using System;
+using ppedv.HalloTaco.Model;
+using ppedv.HalloTaco.Model.Contracts;
 
 namespace ppedv.HalloTaco.Logic
 {
@@ -14,5 +16,9 @@ namespace ppedv.HalloTaco.Logic
         public Core() : this(new Data.EF.EfRepository())
         { }
 
+        public decimal CalcRabatt(Taco selectedTaco)
+        {
+            return selectedTaco.Preis * 0.9m;
+        }
     }
 }
