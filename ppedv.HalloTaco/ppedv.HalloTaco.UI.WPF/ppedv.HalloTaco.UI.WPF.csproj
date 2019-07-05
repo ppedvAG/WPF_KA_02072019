@@ -65,10 +65,15 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModels\SaveCommand.cs" />
     <Compile Include="ViewModels\TacoViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\BestellView.xaml.cs">
       <DependentUpon>BestellView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FleischControl.xaml.cs">
+      <DependentUpon>FleischControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TacoView.xaml.cs">
       <DependentUpon>TacoView.xaml</DependentUpon>
@@ -86,6 +91,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\BestellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FleischControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -120,6 +129,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -133,6 +143,13 @@
       <Link>EntityFramework.SqlServer.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Assets\yellow_submarine.png" />
+    <Resource Include="Assets\star.png" />
+    <Resource Include="Assets\user_yoda.png" />
+    <Resource Include="Assets\moon.png" />
+    <Resource Include="Assets\chiken_leg.png" />
+    <Resource Include="Assets\cat.png" />
+    <Resource Include="Assets\tree.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ppedv.HalloTaco.Logic\ppedv.HalloTaco.Logic.csproj">

@@ -11,11 +11,32 @@
     <UserControl.DataContext>
         <vm:TacoViewModel/>
     </UserControl.DataContext>
+
     <DockPanel>
+        <Popup IsOpen="{Binding DeleteDialogVisible}" Placement="Center">
+            <Border Background="MistyRose" BorderThickness="4" BorderBrush="Red">
+                <StackPanel>
+                    <TextBlock Text="{Binding DeleteDialogText}"/>
+                    <WrapPanel>
+                        <Button Command="{Binding DeleteDialogResult}" CommandParameter="jo" >Ja</Button>
+                        <Button Command="{Binding DeleteDialogResult}" CommandParameter="nö">Nein</Button>
+                        <Button Command="{Binding DeleteDialogResult}" CommandParameter="lmaa">Frag mich nie wieder!!!!</Button>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+        </Popup>
         <WrapPanel DockPanel.Dock="Top">
-            <Button Content="{x:Static res:Resources.SaveButtonText}" Click="Button_Click"/>
-            <Button Content="{x:Static res:Resources.NewButtonText}"/>
-            <Button Content="{x:Static res:Resources.DeleteButtonText}"/>
+            <WrapPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Margin" Value="8"/>
+                    <Setter Property="FontSize" Value="18"/>
+                    <Setter Property="Padding" Value="24,4"/>
+                </Style>
+            </WrapPanel.Resources>
+            <Button Command="{Binding SaveCommand}" Content="{x:Static res:Resources.SaveButtonText}" />
+            <Button Background="AliceBlue" Command="{Binding SaveCommandInCool}"  Content="{x:Static res:Resources.SaveButtonText}" />
+            <Button Command="{Binding NewCommand}" Content="{x:Static res:Resources.NewButtonText}"/>
+            <Button Command="{Binding DeleteCommand}" Content="{x:Static res:Resources.DeleteButtonText}"/>
         </WrapPanel>
         <DataGrid CanUserDeleteRows="False"
                   CanUserAddRows="False" 
@@ -69,8 +90,11 @@
 
             <Label Grid.Row="2" Content="{x:Static res:Resources.TacoMeatTypeLabel}"/>
 
-            <ComboBox ItemsSource="{Binding Fleischarten}" 
-                      SelectedItem="{Binding SelectedTaco.Fleischart}"  Grid.Row="2" Grid.Column="1"/>
+            <DockPanel  Grid.Row="2" Grid.Column="1">
+                <local:FleischControl Fleischart="{Binding SelectedTaco.Fleischart,Mode=TwoWay}" DockPanel.Dock="Left"/>
+                <ComboBox ItemsSource="{Binding Fleischarten}" 
+                      SelectedItem="{Binding SelectedTaco.Fleischart}"/>
+            </DockPanel>
 
             <Label Grid.Row="3" Content="{x:Static res:Resources.TacoTortillaTypeLabel}"/>
             <ComboBox ItemsSource="{Binding Tortillaarten}" SelectedItem="{Binding SelectedTaco.Tortillaart}" Grid.Row="3" Grid.Column="1"/>
@@ -82,7 +106,7 @@
                 </StackPanel>
             </Border>
             <Label Grid.Row="5" Content="{x:Static res:Resources.TacoTortillaHardnessLabel}"/>
-            <CheckBox Grid.Row="5" VerticalAlignment="Center" IsChecked="{Binding SelectedTaco.IstWeich}" Grid.Column="1" Content="{x:Static res:Resources.TacoTortillaHardnesTypeLabel}"/>
+            <CheckBox Grid.Row="5" VerticalAlignment="Center" IsChecked="{Binding SelectedTaco.IstWeich}" Grid.Column="1" Content="{x:Static res:Resources.TacoTortillaHardnesTypeLabel}" Visibility="Hidden"/>
         </Grid>
     </DockPanel>
 </UserControl>

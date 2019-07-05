@@ -24,11 +24,19 @@ namespace ppedv.HalloTaco.UI.WPF.Views
         public TacoView()
         {
             InitializeComponent();
+            ((TacoViewModel)DataContext).PropertyChanged += TacoView_PropertyChanged;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void TacoView_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-
+            if (e.PropertyName == nameof(TacoViewModel.DeleteDialogVisible) && ((TacoViewModel)DataContext).DeleteDialogVisible)
+            {
+                var result = MessageBox.Show("Kill me!!", "", MessageBoxButton.YesNoCancel, MessageBoxImage.Error, MessageBoxResult.None);
+                if (result == MessageBoxResult.Yes)
+                {
+                    ((TacoViewModel)DataContext).DeleteDialogResult.Execute("jo");
+                }
+            }
         }
     }
 }

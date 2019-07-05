@@ -10,6 +10,8 @@ namespace ppedv.HalloTaco.Data.EF
     {
         EfContext context = new EfContext();
 
+        public bool HasChanges => context.ChangeTracker.HasChanges();
+
         public void Add<T>(T entity) where T : Entity
         {
             //    if (typeof(T) == typeof(Taco))
